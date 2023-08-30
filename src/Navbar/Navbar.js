@@ -14,10 +14,28 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const pages = ["Home", "Contact Us", "About Us", "Sign Up"];
-  const settings = [];
+  const pages = [
+    {
+      name: "Home",
+      link: "",
+    },
+    ,
+    {
+      name: "Contact Us",
+      link: "contact",
+    },
+    {
+      name: "About Us",
+      link: "about",
+    },
+    {
+      name: "Sign Up",
+      link: "sign-up",
+    },
+  ];
 
   const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -32,25 +50,46 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* Logo Icon and Logo Text full size screen*/}
+          {/* Logo Icon full size screen*/}
           <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
+
+          {/* Logo Text full size screen */}
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
-            Logo
+            <Link
+              to={pages[0].link}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Logo
+            </Link>
           </Typography>
+
+          {/* Menu on full size screen */}
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {pages.map((page, index) => (
+              <Button
+                key={index}
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <Link
+                  to={page.link}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  {page.name}
+                </Link>
+              </Button>
+            ))}
+          </Box>
 
           {/* Hamburger Icon on small sized screen */}
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -64,7 +103,8 @@ const Navbar = () => {
             >
               <MenuIcon />
             </IconButton>
-            {/* Menu on small sized screen */}
+
+            {/* Hamburger Menu on small sized screen */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -75,9 +115,16 @@ const Navbar = () => {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: "block", md: "none" } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link
+                      to={page.link}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {page.name}
+                    </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -88,8 +135,6 @@ const Navbar = () => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -97,24 +142,15 @@ const Navbar = () => {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
             }}
           >
-            Logo
+            <Link
+              to={pages[0].link}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              Logo
+            </Link>
           </Typography>
-          {/* Menu on small sized screen */}
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
         </Toolbar>
       </Container>
     </AppBar>
