@@ -31,7 +31,7 @@ const Home = () => {
     <React.Fragment>
       {posts ? (
         <div>
-          <Typography variant="h4" style={{ margin: "1rem" }}>
+          <Typography variant="h5" style={{ margin: "1rem" }}>
             Latest Blog Posts
           </Typography>
           {posts.map((post) => {
@@ -43,7 +43,7 @@ const Home = () => {
                 style={{ padding: "1rem", margin: "1rem" }}
               >
                 <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h6" component="div">
                     {post.title}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">

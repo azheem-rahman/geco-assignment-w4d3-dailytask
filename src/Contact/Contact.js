@@ -22,7 +22,7 @@ const Contact = () => {
 
   return (
     <React.Fragment>
-      <Typography variant="h4" style={{ margin: "1rem" }}>
+      <Typography variant="h5" style={{ margin: "1rem" }}>
         Contact Us
       </Typography>
       <Box
