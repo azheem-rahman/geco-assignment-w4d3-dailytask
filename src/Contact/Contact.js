@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const Contact = () => {
@@ -28,21 +28,26 @@ const Contact = () => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row",
+          flexDirection: "column",
           justifyContent: "center",
+          mt: 3,
         }}
       >
-        {contactData.map((contact, index) => {
-          return (
-            <Card key={index} sx={{ m: 1, p: 1 }}>
-              <CardContent>
-                <Typography>{contact.location}</Typography>
-                <Typography>{contact.contactNum}</Typography>
-                <Typography>{contact.email}</Typography>
-              </CardContent>
-            </Card>
-          );
-        })}
+        <Grid container spacing={2}>
+          {contactData.map((contact, index) => {
+            return (
+              <Grid item xs={12} md={4}>
+                <Card key={index}>
+                  <CardContent>
+                    <Typography>{contact.location}</Typography>
+                    <Typography>{contact.contactNum}</Typography>
+                    <Typography>{contact.email}</Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            );
+          })}
+        </Grid>
       </Box>
     </React.Fragment>
   );
