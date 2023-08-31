@@ -6,9 +6,15 @@ import About from "./About/About";
 import Contact from "./Contact/Contact";
 import SignUp from "./SignUp/SignUp";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
+
 const App = () => {
+  const defaultTheme = createTheme();
+
   return (
-    <React.Fragment>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
       <BrowserRouter>
         <Navbar />
 
@@ -19,7 +25,7 @@ const App = () => {
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
-    </React.Fragment>
+    </ThemeProvider>
   );
 };
 
