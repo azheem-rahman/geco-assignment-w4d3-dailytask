@@ -19,7 +19,7 @@ const Home = () => {
     axios
       .get(getPostsAPI)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setPosts(res.data);
       })
       .catch((err) => {
